@@ -22,6 +22,9 @@
                                  #
                               </th>
                               <th>Nama Siswa</th>
+                              <th>Orang Tua</th>
+                              <th>Agama</th>
+                              <th>Tgl. Lahir</th>
                               <th>Alamat</th>
                               <th>Email/No Telepon</th>
                               <th>Status</th>
@@ -36,6 +39,12 @@
                               <td>
                                  <img alt="image" src="<?= base_url('files/siswa/thumb/'.$x->thumb_siswa) ?>" class="rounded-circle" width="35" data-toggle="tooltip" title="<?= x($x->nama_siswa) ?>"> &nbsp;
                                  <?= x($x->nama_siswa) ?></td>
+                              <td>
+                                 Ayah : <?= x($x->nama_ayah) ?><br>
+                                 Ibu : <?= x($x->nama_ibu) ?>
+                              </td>
+                              <td><?= x($x->agama) ?></td>
+                              <td><?= tgl(x($x->tgl_lahir_siswa)) ?></td>
                               <td><?= x($x->alamat_siswa) ?></td>
                               <td>
                                  <?= x($x->email_siswa) ?><br>
