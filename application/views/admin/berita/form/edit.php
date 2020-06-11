@@ -3,10 +3,10 @@
 <div class="main-content">
    <section class="section">
       <div class="section-header">
-         <h1>Tulis Blog</h1>
+         <h1>Edit Berita</h1>
          <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item"><a href="<?= site_url('admin/blog/data') ?>">Blog</a></div>
-            <div class="breadcrumb-item active"><a href="#">Tulis Blog</a></div>
+            <div class="breadcrumb-item"><a href="<?= site_url('admin/berita/data') ?>">Berita</a></div>
+            <div class="breadcrumb-item active"><a href="#">Edit Berita</a></div>
          </div>
       </div>
       <div class="row">
@@ -18,22 +18,24 @@
                <div class="card-body">
                   <div class="row">
                      <div class="col-12">
-                        <form method="POST" action="<?= site_url('admin/blog/insert') ?>" enctype="multipart/form-data">
+                        <form method="POST" action="<?= site_url('admin/berita/update') ?>" enctype="multipart/form-data">
                            <div class="form-group">
                               <label>Judul</label>
-                              <input type="text" name="judul_blog" required class="form-control" placeholder="Ketikkan judul blog">
+                              <input type="text" value="<?= $data->judul_berita ?>" name="judul_berita" required class="form-control" placeholder="Ketikkan judul berita">
                            </div>
                            <div class="form-group">
-                              <label>Header Blog</label>
-                              <input type="file" name="foto" required class="form-control" placeholder="Ketikkan judul blog">
+                              <label>Header Berita</label><br>
+                              <img src="<?= base_url('files/berita/thumb/'.$data->thumb_berita) ?>" width="300px"><br>
+                              <input type="file" name="foto" class="form-control" placeholder="Ketikkan judul berita">
                            </div>
                            <div class="form-group">
-                              <label>Isi Blog</label>
-                              <textarea id="ckeditor" name="isi_blog"></textarea>
+                              <label>Isi Berita</label>
+                              <textarea id="ckeditor" name="isi_berita"><?= $data->isi_berita ?></textarea>
                            </div>
                            <div class="form-group">
-                              <label>Meta Blog</label>
-                              <textarea class="form-control" name="meta_blog" required></textarea>
+                              <label>Meta Berita</label>
+                              <textarea class="form-control" name="meta_berita" required><?= $data->meta_berita ?></textarea>
+                              <input type="hidden" name="id_berita" value="<?= $data->id_berita ?>">
                            </div>
                            <div class="form-group">
                              <button onclick="history.back()" class="btn btn-danger">Batal</button>
@@ -55,8 +57,7 @@
   $(function () {
           CKEDITOR.replace('ckeditor',{
               filebrowserImageBrowseUrl : '<?php echo base_url('assets/kcfinder/browse.php');?>',
-              // filebrowserImageBrowseUrl : '<?php echo base_url("assets/ckfinder/ckfinder.html") ?>',
-              height: '400px'
+              height: '400px'             
           });
       });
 </script>

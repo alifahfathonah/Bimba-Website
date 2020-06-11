@@ -1,65 +1,65 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Blog extends CI_Controller {
+class Berita extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		$this->load->model('Mblog');
+		$this->load->model('Mberita');
 		admin();
 	}
 
 	public function data(){
-		$x['title']		= "Blog - Admin ".get_webinfo()->nama_website;
-		$x['data']		= $this->Mblog->read()->result();
-		$this->load->view('admin/blog/index', $x);
+		$x['title']		= "Berita - Admin ".get_webinfo()->nama_website;
+		$x['data']		= $this->Mberita->read()->result();
+		$this->load->view('admin/berita/index', $x);
 	}
 
 	public function tambah(){
-		$x['title']		= "Tulis Blog - Admin ".get_webinfo()->nama_website;
-		$this->load->view('admin/blog/form/tambah', $x);
+		$x['title']		= "Tulis Berita - Admin ".get_webinfo()->nama_website;
+		$this->load->view('admin/berita/form/tambah', $x);
 	}
 
 	public function edit($id){
-		$x['title']		= "Tulis Blog - Admin ".get_webinfo()->nama_website;
-		$x['data']		= $this->Mblog->read_where(array('id_blog' => $id))->row();
-		$this->load->view('admin/blog/form/edit', $x);
+		$x['title']		= "Tulis Berita - Admin ".get_webinfo()->nama_website;
+		$x['data']		= $this->Mberita->read_where(array('id_berita' => $id))->row();
+		$this->load->view('admin/berita/form/edit', $x);
 	}
 
 	public function publish($id){
-		if ($this->Mblog->update(array('publish' => 1), $id)) {
+		if ($this->Mberita->update(array('publish' => 1), $id)) {
 			notif("Data berhasil dipublish", "s");
 		}else{
 			notif("Data gagal dipublish", "e");
 		}
-		redirect('admin/blog/data','refresh');
+		redirect('admin/berita/data','refresh');
 	}
 
 	public function unpublish($id){
-		if ($this->Mblog->update(array('publish' => 0), $id)) {
+		if ($this->Mberita->update(array('publish' => 0), $id)) {
 			notif("Data berhasil diunpublish", "s");
 		}else{
 			notif("Data gagal diunpublish", "e");
 		}
-		redirect('admin/blog/data','refresh');
+		redirect('admin/berita/data','refresh');
 	}
 
 	public function delete($id){
-		$data = $this->Mblog->read_where(array('id_blog' => $id))->row();
-		if ($this->Mblog->delete($id)) {
-			$path = "./files/blog/";
-			unlink($path."source/".$data->foto_blog);
-			unlink($path."thumb/".$data->thumb_blog);
+		$data = $this->Mberita->read_where(array('id_berita' => $id))->row();
+		if ($this->Mberita->delete($id)) {
+			$path = "./files/berita/";
+			unlink($path."source/".$data->foto_berita);
+			unlink($path."thumb/".$data->thumb_berita);
 			notif("Data berhasil dihapus", "s");
 		}else{
 			notif("Data gagal dihapus", "e");
 		}
-		redirect('admin/blog/data','refresh');
+		redirect('admin/berita/data','refresh');
 	}
 
 	public function insert(){
 		$nm_file = "blog_".time(); //nama file + fungsi time
-        $config['upload_path'] = './files/blog/source/'; //folder untuk meyimpan foto
+        $config['upload_path'] = './files/berita/source/'; //folder untuk meyimpan foto
         $config['allowed_types'] = 'jpg|png|jpeg';
         $config['max_size'] = '5000';
         $config['max_width'] = '5000';
@@ -73,8 +73,8 @@ class Blog extends CI_Controller {
                 $data_upload = $this->upload->data();
                 $create_thumb = array(
                     'image_library' => 'gd2',
-                    'source_image' => './files/blog/source/'.$data_upload['file_name'],
-                    'new_image' => './files/blog/thumb/'.$data_upload['file_name'],
+                    'source_image' => './files/berita/source/'.$data_upload['file_name'],
+                    'new_image' => './files/berita/thumb/'.$data_upload['file_name'],
                     'maintain_ratio' => true,
                     'create_thumb' => true,
                     'quality' => '40%',
@@ -86,33 +86,33 @@ class Blog extends CI_Controller {
                 $this->image_lib->resize();
 
                 $data = array(
-					'judul_blog'		=> $this->input->post('judul_blog'),
-					'slug_blog'			=> slug($this->input->post('judul_blog')),
-					'foto_blog'    		=> $data_upload['file_name'],
-                    'thumb_blog'		=> $nm_file.'_thumb'.$data_upload['file_ext'],
-					'meta_blog'			=> $this->input->post('meta_blog'),
+					'judul_berita'		=> $this->input->post('judul_berita'),
+					'slug_berita'			=> slug($this->input->post('judul_berita')),
+					'foto_berita'    		=> $data_upload['file_name'],
+                    'thumb_berita'		=> $nm_file.'_thumb'.$data_upload['file_ext'],
+					'meta_berita'			=> $this->input->post('meta_berita'),
 					'id_admin'			=> $this->session->userdata('id_admin')
 				);
             }
         }
-		if ($this->Mblog->insert($data)) {
+		if ($this->Mberita->insert($data)) {
 			notif("Data berhasil disimpan", "s");
 		}else{
 			notif("Data gagal disimpan", "e");
 		}
-		redirect('admin/blog/data','refresh');
+		redirect('admin/berita/data','refresh');
 	}
 
 	public function update(){
 		$nm_file = "blog_".time(); //nama file + fungsi time
-        $config['upload_path'] = './files/blog/source/'; //folder untuk meyimpan foto
+        $config['upload_path'] = './files/berita/source/'; //folder untuk meyimpan foto
         $config['allowed_types'] = 'jpg|png|jpeg';
         $config['max_size'] = '5000';
         $config['max_width'] = '5000';
         $config['max_height'] = '5000';
         $config['file_name'] = $nm_file;
 		$this->upload->initialize($config);
-		$id_blog = $this->input->post('id_blog');
+		$id_berita = $this->input->post('id_berita');
 
         if(isset($_FILES['foto']['name'])){
             if($this->upload->do_upload('foto')){
@@ -120,8 +120,8 @@ class Blog extends CI_Controller {
                 $data_upload = $this->upload->data();
                 $create_thumb = array(
                     'image_library' => 'gd2',
-                    'source_image' => './files/blog/source/'.$data_upload['file_name'],
-                    'new_image' => './files/blog/thumb/'.$data_upload['file_name'],
+                    'source_image' => './files/berita/source/'.$data_upload['file_name'],
+                    'new_image' => './files/berita/thumb/'.$data_upload['file_name'],
                     'maintain_ratio' => true,
                     'create_thumb' => true,
                     'quality' => '40%',
@@ -133,47 +133,47 @@ class Blog extends CI_Controller {
                 $this->image_lib->resize();
 
                 $data = array(
-					'judul_blog'		=> $this->input->post('judul_blog'),
-					'slug_blog'			=> slug($this->input->post('judul_blog')),
-					'foto_blog'    		=> $data_upload['file_name'],
-                    'thumb_blog'		=> $nm_file.'_thumb'.$data_upload['file_ext'],
-					'isi_blog'			=> $this->input->post('isi_blog'),
-					'meta_blog'			=> $this->input->post('meta_blog'),
+					'judul_berita'		=> $this->input->post('judul_berita'),
+					'slug_berita'			=> slug($this->input->post('judul_berita')),
+					'foto_berita'    		=> $data_upload['file_name'],
+                    'thumb_berita'		=> $nm_file.'_thumb'.$data_upload['file_ext'],
+					'isi_berita'			=> $this->input->post('isi_berita'),
+					'meta_berita'			=> $this->input->post('meta_berita'),
 					'id_admin'			=> $this->session->userdata('id_admin')
 				);
 
-				$x = $this->Mblog->read_where(array('id_blog' => $id_blog))->row();
-				if ($this->Mblog->update($data, $id_blog)) {
-					$path = "./files/blog/";
-					unlink($path."source/".$x->foto_blog);
-					unlink($path."thumb/".$x->thumb_blog);
+				$x = $this->Mberita->read_where(array('id_berita' => $id_berita))->row();
+				if ($this->Mberita->update($data, $id_berita)) {
+					$path = "./files/berita/";
+					unlink($path."source/".$x->foto_berita);
+					unlink($path."thumb/".$x->thumb_berita);
 					notif("Data berhasil disimpan", "s");
 				}else{
 					notif("Data gagal disimpan", "e");
 				}
             }else{
             	$data = array(
-					'judul_blog'		=> $this->input->post('judul_blog'),
-					'slug_blog'			=> slug($this->input->post('judul_blog')),
-					'isi_blog'			=> $this->input->post('isi_blog'),
-					'meta_blog'			=> $this->input->post('meta_blog'),
+					'judul_berita'		=> $this->input->post('judul_berita'),
+					'slug_berita'			=> slug($this->input->post('judul_berita')),
+					'isi_berita'			=> $this->input->post('isi_berita'),
+					'meta_berita'			=> $this->input->post('meta_berita'),
 					'id_admin'			=> $this->session->userdata('id_admin')
 				);
-            	if ($this->Mblog->update($data, $id_blog)) {
+            	if ($this->Mberita->update($data, $id_berita)) {
 					notif("Data berhasil disimpan", "s");
 				}else{
 					notif("Data gagal disimpan", "e");
 				}
             }
         }
-		redirect('admin/blog/data','refresh');
+		redirect('admin/berita/data','refresh');
 	}
 
 	public function kcfinder(){
-		$this->load->view('admin/blog/kcfinder');
+		$this->load->view('admin/berita/kcfinder');
 	}
 
 }
 
-/* End of file Blog.php */
-/* Location: ./application/controllers/admin/Blog.php */
+/* End of file Berita.php */
+/* Location: ./application/controllers/admin/Berita.php */

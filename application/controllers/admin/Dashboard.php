@@ -6,7 +6,7 @@ class Dashboard extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('Madmin');
-		$this->load->model('Mblog');
+		$this->load->model('Mberita');
 		$this->load->model('Mguru');
 		$this->load->model('Msiswa');
 		admin();
@@ -15,7 +15,7 @@ class Dashboard extends CI_Controller {
 	public function index(){
 		$x['title']		= "Dashboard - Admin ".get_webinfo()->nama_website;
 		$x['t_admin']	= $this->Madmin->read()->num_rows();
-		$x['t_blog']	= $this->Mblog->read()->num_rows();
+		$x['t_blog']	= $this->Mberita->read()->num_rows();
 		$x['t_guru']	= $this->Mguru->read()->num_rows();
 		$x['t_siswa']	= $this->Msiswa->read()->num_rows();
 		$this->load->view('admin/dashboard/index', $x);

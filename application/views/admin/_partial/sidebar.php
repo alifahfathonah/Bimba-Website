@@ -20,17 +20,17 @@
          <li class="<?= $this->uri->segment(2) == 'siswa' ? 'active':'' ?>">
             <a class="nav-link" href="<?= site_url('admin/siswa') ?>"><i class="fas fa-user-graduate"></i> <span>Siswa</span></a>
          </li>
-         <li class="<?= $this->uri->segment(2) == 'kelas' ? 'active':'' ?>">
-            <a class="nav-link" href="<?= site_url('admin/kelas') ?>"><i class="fas fa-school"></i> <span>Kelas</span></a>
+         <li class="<?= $this->uri->segment(2) == 'modul' ? 'active':'' ?>">
+            <a class="nav-link" href="<?= site_url('admin/modul') ?>"><i class="fas fa-book"></i> <span>Modul</span></a>
          </li>
-         <li class="<?= $this->uri->segment(2) == 'materi' ? 'active':'' ?>">
-            <a class="nav-link" href="<?= site_url('admin/materi') ?>"><i class="fas fa-book"></i> <span>Materi</span></a>
+         <li class="<?= $this->uri->segment(2) == 'penilaian' ? 'active':'' ?>">
+            <a class="nav-link" href="<?= site_url('admin/penilaian') ?>"><i class="fas fa-school"></i> <span>Penilaian</span></a>
          </li>
-         <li class="dropdown <?= $this->uri->segment(2) == 'blog' ? 'active':'' ?>">
-            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fab fa-blogger-b"></i> <span>Blog</span></a>
-            <ul class="dropdown-menu" style="<?= $this->uri->segment(2) == 'blog' ? '':'display: none' ?>">
-               <li class="<?= ($this->uri->segment(2) == 'blog' && $this->uri->segment(3) == 'tambah') ? 'active':'' ?>"><a class="nav-link" href="<?= site_url('admin/blog/tambah') ?>">Tulis Blog</a></li>
-               <li class="<?= ($this->uri->segment(2) == 'blog' && $this->uri->segment(3) == 'data') ? 'active':'' ?>"><a class="nav-link" href="<?= site_url('admin/blog/data') ?>">Data Blog</a></li>
+         <li class="dropdown <?= $this->uri->segment(2) == 'berita' ? 'active':'' ?>">
+            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fab fa-blogger-b"></i> <span>Berita</span></a>
+            <ul class="dropdown-menu" style="<?= $this->uri->segment(2) == 'berita' ? '':'display: none' ?>">
+               <li class="<?= ($this->uri->segment(2) == 'berita' && $this->uri->segment(3) == 'tambah') ? 'active':'' ?>"><a class="nav-link" href="<?= site_url('admin/berita/tambah') ?>">Tulis Berita</a></li>
+               <li class="<?= ($this->uri->segment(2) == 'berita' && $this->uri->segment(3) == 'data') ? 'active':'' ?>"><a class="nav-link" href="<?= site_url('admin/berita/data') ?>">Data Berita</a></li>
             </ul>
          </li>
          <li class="<?= $this->uri->segment(2) == 'info' ? 'active':'' ?>">

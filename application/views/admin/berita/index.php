@@ -2,16 +2,16 @@
 <div class="main-content">
    <section class="section">
       <div class="section-header">
-         <h1>Data Blog</h1>
+         <h1>Data Berita</h1>
          <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active"><a href="#">Blog</a></div>
+            <div class="breadcrumb-item active"><a href="#">Berita</a></div>
          </div>
       </div>
       <div class="row">
          <div class="col-12">
             <div class="card">
                <div class="card-header">
-                  <a href="<?= site_url('admin/blog/tambah') ?>" class="btn btn-success"><i class="fas fa-pen"></i> Tulis Blog</a>
+                  <a href="<?= site_url('admin/berita/tambah') ?>" class="btn btn-success"><i class="fas fa-pen"></i> Tulis Berita</a>
                </div>
                <div class="card-body">
                   <div class="table-responsive">
@@ -34,11 +34,10 @@
                            <tr>
                               <td><?= $no++ ?></td>
                               <td>
-                                 <img alt="image" src="<?= base_url('files/blog/thumb/'.$x->thumb_blog) ?>" class="img" width="35" data-toggle="tooltip" title="<?= x($x->judul_blog) ?>"> &nbsp;
-                                 <?= x($x->judul_blog) ?> &nbsp; &nbsp;
-                                 <i class="fas fa-eye"> <?= $x->counter ?></i>
+                                 <img alt="image" src="<?= base_url('files/berita/thumb/'.$x->thumb_berita) ?>" class="img" width="35" data-toggle="tooltip" title="<?= x($x->judul_berita) ?>"> &nbsp;
+                                 <?= x($x->judul_berita) ?>
                               </td>
-                              <td><?= x($x->slug_blog) ?></td>
+                              <td><?= x($x->slug_berita) ?></td>
                               <td>
                                  <img alt="image" src="<?= base_url('files/admin/thumb/'.$x->thumb_admin) ?>" class="rounded-circle" width="35" data-toggle="tooltip" title="<?= x($x->nama_admin) ?>"> &nbsp;
                                  <?= x($x->nama_admin) ?>
@@ -53,15 +52,15 @@
                               <td class="text-center"><?= x($x->dibuat) ?></td>
                               <td>
                                  <div class="btn-group">
-                                    <a href="<?= site_url('admin/blog/edit/'.$x->id_blog) ?>" style="color: white" data-toggle="tooltip" title="Edit Data" class="btn btn-sm btn-info btn-edit"><i class="fas fa-pen"></i></a>
+                                    <a href="<?= site_url('admin/berita/edit/'.$x->id_berita) ?>" style="color: white" data-toggle="tooltip" title="Edit Data" class="btn btn-sm btn-info btn-edit"><i class="fas fa-pen"></i></a>
 
                                     <?php if ($x->publish == 0){ ?>
-                                       <a data-toggle="tooltip" title="Publish Blog" href="#" class="btn btn-sm btn-warning" data-confirm="Publish Blog|Apakah anda yakin akan publish <b><?= x($x->judul_blog) ?></b>?" data-confirm-yes="window.location = '<?= site_url('admin/blog/publish/'.$x->id_blog) ?>'"><i class="fas fa-eye"></i></a>
+                                       <a data-toggle="tooltip" title="Publish Berita" href="#" class="btn btn-sm btn-warning" data-confirm="Publish Berita|Apakah anda yakin akan publish <b><?= x($x->judul_berita) ?></b>?" data-confirm-yes="window.location = '<?= site_url('admin/berita/publish/'.$x->id_berita) ?>'"><i class="fas fa-eye"></i></a>
                                     <?php }else{ ?>
-                                       <a data-toggle="tooltip" title="Unpublished Blog" href="#" class="btn btn-sm btn-warning" data-confirm="Unpublished Blog|Apakah anda yakin akan unpublish <b><?= x($x->judul_blog) ?></b>?" data-confirm-yes="window.location = '<?= site_url('admin/blog/unpublish/'.$x->id_blog) ?>'"><i class="fas fa-eye-slash"></i></a>
+                                       <a data-toggle="tooltip" title="Unpublished Berita" href="#" class="btn btn-sm btn-warning" data-confirm="Unpublished Berita|Apakah anda yakin akan unpublish <b><?= x($x->judul_berita) ?></b>?" data-confirm-yes="window.location = '<?= site_url('admin/berita/unpublish/'.$x->id_berita) ?>'"><i class="fas fa-eye-slash"></i></a>
                                     <?php } ?>
 
-                                    <a data-toggle="tooltip" title="Hapus Data" href="#" class="btn btn-sm btn-danger" data-confirm="Hapus data|Apakah anda yakin akan menghapus <b><?= x($x->judul_blog) ?></b>?" data-confirm-yes="window.location = '<?= site_url('admin/blog/delete/'.$x->id_blog) ?>'"><i class="fa fa-trash"></i></a>
+                                    <a data-toggle="tooltip" title="Hapus Data" href="#" class="btn btn-sm btn-danger" data-confirm="Hapus data|Apakah anda yakin akan menghapus <b><?= x($x->judul_berita) ?></b>?" data-confirm-yes="window.location = '<?= site_url('admin/berita/delete/'.$x->id_berita) ?>'"><i class="fa fa-trash"></i></a>
                                  </div>
                               </td>
                            </tr>
