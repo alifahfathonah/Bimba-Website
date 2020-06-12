@@ -23,7 +23,10 @@
          <div class="col-12">
             <div class="card">
                <div class="card-header">
-                  <a href="" class="btn btn-success"  data-toggle="modal" data-target="#exampleModal" title="Tambah data"><i class="fa fa-plus"></i> Tambah</a>
+                  <a href="" class="btn btn-success"  data-toggle="modal" data-target="#exampleModal" title="Tambah data"><i class="fa fa-plus"></i> Tambah</a> &nbsp; &nbsp; &nbsp;
+                  <?php if (!empty($this->input->get_post('id-siswa'))) { ?>
+                     <a id="btn-sertifikat" style="color: white" class="btn btn-info"  data-toggle="tooltip" data-id="<?= $this->input->get('id-siswa') ?>" title="sertifikat"><i class="fa fa-image"></i> Sertifikat</a>
+                  <?php } ?>
                </div>
                <div class="card-body">
                   <div class="table-responsive">
@@ -38,6 +41,7 @@
                               <th>Minggu Ke-</th>
                               <th>Bulan</th>
                               <th>Nilai</th>
+                              <th>Komentar</th>
                               <th>Aksi</th>
                            </tr>
                         </thead>
@@ -53,6 +57,7 @@
                               <td><?= x($x->minggu) ?></td>
                               <td><?= x($x->bulan) ?></td>
                               <td><?= x($x->nilai) ?></td>
+                              <td><?= x($x->komentar) ?></td>
                               <td>
                                  <div class="btn-group">
                                     <a style="color: white" data-toggle="tooltip" title="Lihat/Edit Data" class="btn btn-sm btn-info btn-edit" data-id="<?= $x->id_penilaian ?>"><i class="fa fa-eye"></i></a>

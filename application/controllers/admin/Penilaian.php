@@ -60,7 +60,8 @@ class Penilaian extends CI_Controller {
 		    "id_modul"			=> $x->id_modul,
 		    "minggu"			=> $x->minggu,
 		    "bulan"			=> $x->bulan,
-		    "nilai"			=> $x->nilai
+		    "nilai"			=> $x->nilai,
+		    "komentar"			=> $x->komentar
 		);
 		echo json_encode($data);
 	}
