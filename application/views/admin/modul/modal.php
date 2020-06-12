@@ -10,19 +10,18 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form method="POST" action="<?= site_url('admin/kelas/insert') ?>" enctype="multipart/form-data">
+				<form method="POST" action="<?= site_url('admin/modul/insert') ?>" enctype="multipart/form-data">
 					<div class="form-group row">
 						<div class="col-sm-12">
-							<input type="text" name="nama_kelas" required class="form-control" placeholder="Nama Kelas">
+							<input type="text" name="nama_modul" required class="form-control" placeholder="Nama Kelas">
 						</div>
 					</div>
 					<div class="form-group">
-                      	<label>Guru</label>
-                      	<select class="form-control" required name="id_guru">
-                      		<option value="">-- Pilih Guru --</option>
-                      		<?php foreach ($dguru as $g): ?>
-                      			<option value="<?= $g->id_guru ?>"><?= $g->nama_guru ?></option>
-                      		<?php endforeach ?>
+                      	<label>Tipe Modul</label>
+                      	<select class="form-control" required name="tipe_modul">
+                      		<option value="">-- Pilih Tipe Modul --</option>
+                      		<option value="BACA">BACA</option>
+                      		<option value="HURUF">HURUF</option>
                       	</select>
                     </div>
 			</div>
@@ -44,14 +43,14 @@
             $('#loading').modal('show');
             $.ajax({
                 type : "POST",
-                url  : "<?= site_url('admin/kelas/data') ?>",
+                url  : "<?= site_url('admin/modul/data') ?>",
                 dataType : "JSON",
                 data : {id:id},
                 success: function(data){
                     $('#loading').modal('hide');
-                    $("#nama_kelas").val(data.nama_kelas);
-                    $("#id_guru").val(data.id_guru);
-                    $("#id_kelas").val(data.id_kelas);
+                    $("#nama_modul").val(data.nama_modul);
+                    $("#id_modul").val(data.id_modul);
+                    $("#tipe_modul").val(data.tipe_modul);
                     $('#modal-edit').modal({backdrop: 'static', keyboard: false});
                     $('#modal-edit').modal('show');
                 }
@@ -72,20 +71,19 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form method="POST" action="<?= site_url('admin/kelas/update') ?>" enctype="multipart/form-data">
+				<form method="POST" action="<?= site_url('admin/modul/update') ?>" enctype="multipart/form-data">
 					<div class="form-group row">
 						<div class="col-sm-12">
-							<input type="text" id="nama_kelas" name="nama_kelas" required class="form-control" placeholder="Nama Kelas">
-							<input type="hidden" id="id_kelas" name="id_kelas">
+							<input type="text" id="nama_modul" name="nama_modul" required class="form-control" placeholder="Nama Kelas">
+							<input type="hidden" id="id_modul" name="id_modul">
 						</div>
 					</div>
 					<div class="form-group">
-                      	<label>Guru</label>
-                      	<select class="form-control" id="id_guru" required name="id_guru">
-                      		<option value="">-- Pilih Guru --</option>
-                      		<?php foreach ($dguru as $g): ?>
-                      			<option value="<?= $g->id_guru ?>"><?= $g->nama_guru ?></option>
-                      		<?php endforeach ?>
+                      	<label>Tipe Modul</label>
+                      	<select class="form-control" required name="tipe_modul" id="tipe_modul">
+                      		<option value="">-- Pilih Tipe Modul --</option>
+                      		<option value="BACA">BACA</option>
+                      		<option value="HURUF">HURUF</option>
                       	</select>
                     </div>
 			</div>

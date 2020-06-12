@@ -2,9 +2,21 @@
 <div class="main-content">
    <section class="section">
       <div class="section-header">
-         <h1>Data Kelas</h1>
+         <h1>Data Penilaian</h1> &nbsp;&nbsp;&nbsp;&nbsp;
+            <select style="width: 500px" class="form-control" id="id_penilaianx" name="id_siswa" onchange="penilaian()">
+               <option value="">-- Pilih Siswa --</option>
+               <?php foreach ($dsiswa as $k): ?>
+               <option value="<?= x($k->id_siswa) ?>" <?= $this->input->get('id-siswa') == x($k->id_siswa) ? "selected":"" ?>><?= x($k->nama_siswa) ?></option>
+               <?php endforeach ?>
+            </select>
+            <script type="text/javascript">
+               function penilaian(){
+                  var id = document.getElementById('id_penilaianx').value;
+                  window.location = '<?= site_url('admin/penilaian?id-siswa=') ?>'+id;
+               }
+            </script>
          <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active"><a href="#">Kelas</a></div>
+            <div class="breadcrumb-item active"><a href="#">Penilaian</a></div>
          </div>
       </div>
       <div class="row">
@@ -21,11 +33,11 @@
                               <th class="text-center">
                                  #
                               </th>
-                              <th>Nama Kelas</th>
-                              <th>Kode Kelas</th>
-                              <th>Guru</th>
-                              <th>Materi</th>
-                              <th>Tanggal</th>
+                              <th>Nama Siswa</th>
+                              <th>Modul</th>
+                              <th>Minggu Ke-</th>
+                              <th>Bulan</th>
+                              <th>Nilai</th>
                               <th>Aksi</th>
                            </tr>
                         </thead>
@@ -33,19 +45,18 @@
                         <?php $no = 1; foreach ($data as $x) { ?>
                            <tr>
                               <td><?= $no++ ?></td>
-                              <td><?= x($x->nama_kelas) ?></td>
-                              <td><?= x($x->kode_kelas) ?></td>
                               <td>
-                                 <img alt="image" src="<?= base_url('files/guru/thumb/'.$x->thumb_guru) ?>" class="rounded-circle" width="35" data-toggle="tooltip" title="<?= x($x->nama_guru) ?>"> &nbsp;
-                                 <?= x($x->nama_guru) ?></td>
+                                 <img alt="image" src="<?= base_url('files/siswa/thumb/'.$x->thumb_siswa) ?>" class="rounded-circle" width="35" data-toggle="tooltip" title="<?= x($x->nama_siswa) ?>"> &nbsp;
+                                 <?= x($x->nama_siswa) ?></td>
                               </td>
-                              <td><?= x($x->materi) ?></td>
-                              <td><?= tgl($x->dibuat) ?></td>
+                              <td><?= x($x->nama_modul) ?></td>
+                              <td><?= x($x->minggu) ?></td>
+                              <td><?= x($x->bulan) ?></td>
+                              <td><?= x($x->nilai) ?></td>
                               <td>
                                  <div class="btn-group">
-                                    <a style="color: white" data-toggle="tooltip" title="Lihat/Edit Data" class="btn btn-sm btn-info btn-edit" data-id="<?= $x->id_kelas ?>"><i class="fa fa-eye"></i></a>
-                                    <a data-toggle="tooltip" title="Hapus Data" href="#" class="btn btn-sm btn-danger" data-confirm="Hapus data|Apakah anda yakin akan menghapus <b><?= x($x->nama_kelas) ?></b>?" data-confirm-yes="window.location = '<?= site_url('admin/kelas/delete/'.$x->id_kelas) ?>'"><i class="fa fa-trash"></i></a>
-                                    <a data-toggle="tooltip" title="Data Materi" class="btn btn-sm btn-warning" href="<?= site_url('admin/materi?id-kelas='.x($x->id_kelas)) ?>"><i class="fas fa-book"></i></a>
+                                    <a style="color: white" data-toggle="tooltip" title="Lihat/Edit Data" class="btn btn-sm btn-info btn-edit" data-id="<?= $x->id_penilaian ?>"><i class="fa fa-eye"></i></a>
+                                    <a data-toggle="tooltip" title="Hapus Data" href="#" class="btn btn-sm btn-danger" data-confirm="Hapus data|Apakah anda yakin akan menghapus <b><?= x($x->nama_siswa.' Modul: '.$x->nama_modul.' Minggu: '.$x->minggu.' Bulan: '.$x->bulan) ?></b>?" data-confirm-yes="window.location = '<?= site_url('admin/penilaian/delete/'.$x->id_penilaian) ?>'"><i class="fa fa-trash"></i></a>
                                  </div>
                               </td>
                            </tr>
@@ -60,5 +71,5 @@
    </div>
 </section>
 </div>
-<?php $this->load->view('admin/kelas/modal') ?>
+<?php $this->load->view('admin/penilaian/modal') ?>
 <?php $this->load->view('admin/_partial/bottom'); ?>

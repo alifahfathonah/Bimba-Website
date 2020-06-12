@@ -24,6 +24,35 @@
 						</div>
 					</div>
 					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Nama Orang Tua</label>
+						<div class="col-sm-5">
+							<input type="text" name="nama_ayah" required class="form-control" placeholder="Nama Ayah">
+						</div>
+						<div class="col-sm-5">
+							<input type="text" name="nama_ibu" required class="form-control" placeholder="Nama Ibu">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Tanggal Lahir Siswa</label>
+						<div class="col-sm-10">
+							<input type="date" name="tgl_lahir_siswa" required class="form-control" placeholder="Tanggal Lahir Siswa">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Agama</label>
+						<div class="col-sm-10">
+							<select class="form-control" name="agama" required>
+								<option>-- Pilih Agama --</option>
+								<option value="ISLAM">ISLAM</option>
+								<option value="KRISTEN">KRISTEN</option>
+								<option value="HINDU">HINDU</option>
+								<option value="BUDA">BUDA</option>
+								<option value="KATOLIK">KATOLIK</option>
+								<option value="LAINNYA">LAINNYA</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Email Siswa</label>
 						<div class="col-sm-10">
 							<input type="email" name="email_siswa" required class="form-control" placeholder="Email Siswa">
@@ -45,6 +74,17 @@
 						<label class="col-sm-2 col-form-label">Password</label>
 						<div class="col-sm-10">
 							<input type="password" name="password_siswa" required class="form-control" placeholder="Password">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Guru/Motivator</label>
+						<div class="col-sm-10">
+							<select class="form-control" name="id_guru" required>
+								<option>-- Pilih Guru/Motivator --</option>
+								<?php foreach ($dguru as $g): ?>
+								<option value="<?= x($g->id_guru) ?>"><?= x($g->nama_guru) ?></option>
+								<?php endforeach ?>
+							</select>
 						</div>
 					</div>
 			</div>
@@ -77,9 +117,15 @@
                     $("#alamat_siswa").val(data.alamat_siswa);
                     $("#username").val(data.username);
                     $("#id_siswa").val(data.id_siswa);
+                    $("#nama_ayah").val(data.nama_ayah);
+                    $("#nama_ibu").val(data.nama_ibu);
+                    $("#tgl_lahir_siswa").val(data.tgl_lahir_siswa);
+                    $("#agama").val(data.agama);
+                    $("#id_guru").val(data.id_guru);
                     $("#foto").attr("src", data.thumb_siswa);
                     $('#modal-edit').modal({backdrop: 'static', keyboard: false});
                     $('#modal-edit').modal('show');
+                    // console.log(data);
                 }
             });
         });
@@ -114,6 +160,35 @@
 						</div>
 					</div>
 					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Nama Orang Tua</label>
+						<div class="col-sm-5">
+							<input type="text" name="nama_ayah" id="nama_ayah" required class="form-control" placeholder="Nama Ayah">
+						</div>
+						<div class="col-sm-5">
+							<input type="text" name="nama_ibu" id="nama_ibu" required class="form-control" placeholder="Nama Ibu">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Tanggal Lahir Siswa</label>
+						<div class="col-sm-10">
+							<input type="date" name="tgl_lahir_siswa" id="tgl_lahir_siswa" required class="form-control" placeholder="Tanggal Lahir Siswa">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Agama</label>
+						<div class="col-sm-10">
+							<select class="form-control" name="agama" id="agama" required>
+								<option>-- Pilih Agama --</option>
+								<option value="ISLAM">ISLAM</option>
+								<option value="KRISTEN">KRISTEN</option>
+								<option value="HINDU">HINDU</option>
+								<option value="BUDA">BUDA</option>
+								<option value="KATOLIK">KATOLIK</option>
+								<option value="LAINNYA">LAINNYA</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Email Siswa</label>
 						<div class="col-sm-10">
 							<input type="email" id="email_siswa"  name="email_siswa" required class="form-control" placeholder="Email Siswa">
@@ -135,6 +210,17 @@
 						<label class="col-sm-2 col-form-label">Password</label>
 						<div class="col-sm-10">
 							<input type="password" name="password_siswa" class="form-control" placeholder="Password">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Guru/Motivator</label>
+						<div class="col-sm-10">
+							<select class="form-control" name="id_guru" id="id_guru" required>
+								<option>-- Pilih Guru/Motivator --</option>
+								<?php foreach ($dguru as $g): ?>
+								<option value="<?= x($g->id_guru) ?>"><?= x($g->nama_guru) ?></option>
+								<?php endforeach ?>
+							</select>
 						</div>
 					</div>
 			</div>

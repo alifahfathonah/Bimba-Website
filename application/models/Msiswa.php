@@ -4,7 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Msiswa extends CI_Model {
 
 	public function read(){
-		return $this->db->get('siswa');
+		$this->db->join('guru b', 'a.id_guru = b.id_guru');
+		return $this->db->get('siswa a');
 	}
 
 	public function read_where($where){

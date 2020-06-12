@@ -27,8 +27,8 @@
                               <th>Tgl. Lahir</th>
                               <th>Alamat</th>
                               <th>Email/No Telepon</th>
+                              <th>Guru/Motivator</th>
                               <th>Status</th>
-                              <th>Login</th>
                               <th>Aksi</th>
                            </tr>
                         </thead>
@@ -50,6 +50,7 @@
                                  <?= x($x->email_siswa) ?><br>
                                  <?= x($x->telepon_siswa) ?>
                               </td>
+                              <td class="text-center"><?= x($x->nama_guru) ?></td>
                               <td>
                                  <?php if ($x->aktif == 0){ ?>
                                     <div class="badge badge-danger">Nonaktif</div>
@@ -57,7 +58,6 @@
                                     <div class="badge badge-success">Aktif</div>
                                  <?php } ?>
                               </td>
-                              <td class="text-center"><?= x($x->login == null ? "Belum pernah login":$x->login) ?></td>
                               <td>
                                  <div class="btn-group">
                                     <a style="color: white" data-toggle="tooltip" title="Lihat/Edit Data" class="btn btn-sm btn-info btn-edit" data-id="<?= $x->id_siswa ?>"><i class="fa fa-eye"></i></a>
