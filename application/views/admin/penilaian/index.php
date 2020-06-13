@@ -55,7 +55,7 @@
                               </td>
                               <td><?= x($x->nama_modul) ?></td>
                               <td><?= x($x->minggu) ?></td>
-                              <td><?= x($x->bulan) ?></td>
+                              <td><?= bulan(x($x->bulan)) ?></td>
                               <td><?= x($x->nilai) ?></td>
                               <td><?= x($x->komentar) ?></td>
                               <td>

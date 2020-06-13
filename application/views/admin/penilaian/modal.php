@@ -44,18 +44,18 @@
                       	<label>Bulan</label>
                       	<select class="form-control" required name="bulan">
                       		<option value="">-- Pilih Bulan --</option>
-                      		<option value="JANUARI">JANUARI</option>
-                      		<option value="FEBRUARI">FEBRUARI</option>
-                      		<option value="MARET">MARET</option>
-                      		<option value="APRIL">APRIL</option>
-                      		<option value="MEI">MEI</option>
-                      		<option value="JUNI">JUNI</option>
-                      		<option value="JULI">JULI</option>
-                      		<option value="AGUSTUS">AGUSTUS</option>
-                      		<option value="SEPTEMBER">SEPTEMBER</option>
-                      		<option value="OKTOBER">OKTOBER</option>
-                      		<option value="NOVEMBER">NOVEMBER</option>
-                      		<option value="DESEMBER">DESEMBER</option>
+                      		<option value="1">JANUARI</option>
+                      		<option value="2">FEBRUARI</option>
+                      		<option value="3">MARET</option>
+                      		<option value="4">APRIL</option>
+                      		<option value="5">MEI</option>
+                      		<option value="6">JUNI</option>
+                      		<option value="7">JULI</option>
+                      		<option value="8">AGUSTUS</option>
+                      		<option value="9">SEPTEMBER</option>
+                      		<option value="10">OKTOBER</option>
+                      		<option value="11">NOVEMBER</option>
+                      		<option value="12">DESEMBER</option>
                       	</select>
                     </div>
 					<div class="form-group">
@@ -193,18 +193,18 @@
                       	<label>Bulan</label>
                       	<select class="form-control" required name="bulan" id="bulan">
                       		<option value="">-- Pilih Bulan --</option>
-                      		<option value="JANUARI">JANUARI</option>
-                      		<option value="FEBRUARI">FEBRUARI</option>
-                      		<option value="MARET">MARET</option>
-                      		<option value="APRIL">APRIL</option>
-                      		<option value="MEI">MEI</option>
-                      		<option value="JUNI">JUNI</option>
-                      		<option value="JULI">JULI</option>
-                      		<option value="AGUSTUS">AGUSTUS</option>
-                      		<option value="SEPTEMBER">SEPTEMBER</option>
-                      		<option value="OKTOBER">OKTOBER</option>
-                      		<option value="NOVEMBER">NOVEMBER</option>
-                      		<option value="DESEMBER">DESEMBER</option>
+                      		<option value="1">JANUARI</option>
+                      		<option value="2">FEBRUARI</option>
+                      		<option value="3">MARET</option>
+                      		<option value="4">APRIL</option>
+                      		<option value="5">MEI</option>
+                      		<option value="6">JUNI</option>
+                      		<option value="7">JULI</option>
+                      		<option value="8">AGUSTUS</option>
+                      		<option value="9">SEPTEMBER</option>
+                      		<option value="10">OKTOBER</option>
+                      		<option value="11">NOVEMBER</option>
+                      		<option value="12">DESEMBER</option>
                       	</select>
                     </div>
 					<div class="form-group">

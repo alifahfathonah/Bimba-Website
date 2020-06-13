@@ -7,6 +7,8 @@ class Mpenilaian extends CI_Model {
 		$this->db->join('siswa b', 'a.id_siswa = b.id_siswa');
 		$this->db->join('modul c', 'a.id_modul = c.id_modul');
 		$this->db->where('a.id_siswa', $id_siswa);
+		$this->db->order_by('a.bulan', 'asc');
+		$this->db->order_by('a.minggu', 'asc');
 		return $this->db->get('penilaian a');
 	}
 
