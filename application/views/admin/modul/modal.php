@@ -11,11 +11,6 @@
 			</div>
 			<div class="modal-body">
 				<form method="POST" action="<?= site_url('admin/modul/insert') ?>" enctype="multipart/form-data">
-					<div class="form-group row">
-						<div class="col-sm-12">
-							<input type="text" name="nama_modul" required class="form-control" placeholder="Nama Kelas">
-						</div>
-					</div>
 					<div class="form-group">
                       	<label>Tipe Modul</label>
                       	<select class="form-control" required name="tipe_modul">
@@ -24,6 +19,11 @@
                       		<option value="HURUF">HURUF</option>
                       	</select>
                     </div>
+					<div class="form-group row">
+						<div class="col-sm-12">
+							<input type="text" name="nama_modul" required class="form-control" placeholder="Nama Kelas">
+						</div>
+					</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">TUTUP</button>
@@ -72,12 +72,6 @@
 			</div>
 			<div class="modal-body">
 				<form method="POST" action="<?= site_url('admin/modul/update') ?>" enctype="multipart/form-data">
-					<div class="form-group row">
-						<div class="col-sm-12">
-							<input type="text" id="nama_modul" name="nama_modul" required class="form-control" placeholder="Nama Kelas">
-							<input type="hidden" id="id_modul" name="id_modul">
-						</div>
-					</div>
 					<div class="form-group">
                       	<label>Tipe Modul</label>
                       	<select class="form-control" required name="tipe_modul" id="tipe_modul">
@@ -86,6 +80,12 @@
                       		<option value="HURUF">HURUF</option>
                       	</select>
                     </div>
+					<div class="form-group row">
+						<div class="col-sm-12">
+							<input type="text" id="nama_modul" name="nama_modul" required class="form-control" placeholder="Nama Kelas">
+							<input type="hidden" id="id_modul" name="id_modul">
+						</div>
+					</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">TUTUP</button>

@@ -113,36 +113,87 @@
             var id = $(this).attr('data-id');
             $('#loading').modal({backdrop: 'static', keyboard: false});
             $('#loading').modal('show');
+            $("#id_siswau").val(id);
+            get_foto(id);
+        });
+
+        $("#formfoto").on("submit", function(e){
+            e.preventDefault();
+            $('#loading').modal({backdrop: 'static', keyboard: false});
+            $('#loading').modal('show');
+            var formData = new FormData(this);
+            console.log(formData);
             $.ajax({
-                type : "POST",
-                url  : "<?= site_url('admin/sertifikat/data') ?>",
-                dataType : "JSON",
-                data : {id:id},
+                url: '<?= site_url('admin/sertifikat/insert') ?>',
+                data: formData,
+                cache: false,
+                type: "POST",
+                cache: false,
+                contentType: false,
+                processData: false,
                 success: function(data){
-                	console.log(data);
-                	if (data.length > 0) {
-                		$("#id_siswau").val(data[0].id_siswa);
-                		$("#type").val("update");
-                		$("#foto").removeAttr("required");
-                		$("#notif").show();
-                		$("#foto-sertifikat").attr("src", "<?= base_url('files/sertifikat/') ?>"+data[0].sertifikat);
-                		$("#foto-sertifikat").show();
-                		$("#btn-hapus").attr("href", "<?= site_url('admin/sertifikat/delete/') ?>"+data[0].id_siswa);
-                		$("#btn-hapus").show();
-                	}else{
-                		$("#id_siswau").val(id);
-                		$("#type").val("insert");
-                		$("#foto").attr("required");
-                		$("#notif").hide();
-                		$("#foto-sertifikat").hide();
-                		$("#btn-hapus").hide();
-                	}
                     $('#loading').modal('hide');
-                    $('#modalsertifikat').modal({backdrop: 'static', keyboard: false});
-                    $('#modalsertifikat').modal('show');
+                    $("#datafoto").html("");
+                    $("#keterangan").val("");
+                    $("#foto").val("");
+                    get_foto($('#id_siswa').val());
+                },
+                error: function(data){
+                    $('#loading').modal('hide');
+                    console.log(data);
                 }
             });
         });
+
+        function get_foto(id_siswa){
+          $.ajax({
+              type : "POST",
+              url  : "<?= site_url('admin/sertifikat/data') ?>",
+              dataType : "JSON",
+              data : {id: id_siswa},
+              success: function(data){
+                  $('#loading').modal('hide');
+                  $('#modalsertifikat').modal({backdrop: 'static', keyboard: false});
+                  $('#modalsertifikat').modal('show');
+                  var html = "";
+                  var url_foto = '<?= base_url() ?>files/sertifikat/';
+                  for (var i = 0; i < data.length; i++) {
+                      //console.log(data[i].nama_bulan);
+                      html += "<tr style='text-align: center; vertical-align: middle'>";
+                      html += "<td><img width='100%' alt='"+data[i].keterangan+"' src='"+url_foto+data[i].sertifikat+"'></td>";
+                      html += "<td>"+data[i].keterangan+"</td>";
+                      html += "<td><a href='#' foto='"+data[i].sertifikat+"' keterangan='"+data[i].keterangan+"' data='"+data[i].id_sertifikat+"' class='btn btn-xs btn-danger hapusfoto'><i class='fa fa-trash'></i></a></td>";
+                      html += "</tr>";
+                  }
+                  $('#datafoto').html(html);
+              }
+        });
+      }
+
+      $(document).on("click", '.hapusfoto', function(event) { 
+          var id = $(this).attr("data");
+          var ket = $(this).attr("keterangan");
+          var foto = $(this).attr("foto");
+          var r = confirm("Apakah anda yakin akan menghapus "+ket+"?");
+
+          if (r) {
+              $.ajax({
+                  type : "POST",
+                  url  : "<?= site_url('admin/sertifikat/delete') ?>",
+                  dataType : "JSON",
+                  data : {id: id, foto: foto},
+                  success: function(data){
+                      $("#datafotokegiatan").html("");
+                      $("#keterangan_kegiatan").val("");
+                      $("#foto_kegiatan").val("");
+                      get_foto($('#id_siswa').val());
+                  },
+                  error: function(data){
+                      console.log(data);
+                  }
+              })
+          }
+      });
     });
 </script>
 
@@ -235,27 +286,36 @@
 <!-- Modal Tambah-->
 <div class="modal fade" id="modalsertifikat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 	aria-hidden="true">
-	<div class="modal-dialog modal-md" role="document">
+	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Upload Sertifikat</h5>
+				<h5 class="modal-title" id="exampleModalLabel">Upload Foto Hasil Pembelajaran</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<div class="modal-body">
-				<form method="POST" action="<?= site_url('admin/sertifikat/insert') ?>" enctype="multipart/form-data">
-                    <div class="form-group">
-                       <label>Foto Sertifikat</label>
-                       <img style="width: 100%" src="" id="foto-sertifikat">
-                       <input type="file" name="foto" id="foto" class="form-control" required>
-                       <input type="hidden" name="id_siswa" id="id_siswau">
-                       <input type="hidden" name="type" id="type">
-                       <p id="notif" style="color: blue; font-weight: bold;">Pilih foto untuk mengganti foto sertifikat yang sekarang</p>
-                    </div>
-			</div>
+      <div class="modal-body table-responsive">
+        <table class="table table-bordered table-condensed table-striped table-hover">
+          <thead>
+            <tr>
+              <th width="30%" style="text-align: center;">FOTO</th>
+              <th style="text-align: center;">KETERANGAN</th>
+              <th width="5%" style="text-align: center;">AKSI</th>
+            </tr>
+          </thead>
+          <tbody id="datafoto">
+          </tbody>
+        </table>
+        <form id="formfoto" enctype='multipart/form-data'>
+          <label>UNGGAH FOTO</label>
+          <input type="hidden" name="id_siswa" id="id_siswau">
+          <input required type="file" id="foto" name="foto" class="form-control" accept="image/*">
+          <p style="color: blue">Foto maksimal 3MB dengan resolusi maksimal 5000x5000 pixel (JPG, PNG, JPEG)</p>
+          <textarea id="keterangan" required name="keterangan" style="margin-top: 5px" class="form-control" placeholder="Tuliskan keterangan"></textarea>
+          <button style="margin-top: 10px" type="submit" class="btn btn-sm btn-success">Unggah</button>
+        </form>
+      </div>
 			<div class="modal-footer">
-				<a id="btn-hapus" style="color: white" class="btn btn-danger">HAPUS FOTO</a>
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">TUTUP</button>
 				<button type="submit" class="btn btn-primary">SIMPAN</button>
 			</div>

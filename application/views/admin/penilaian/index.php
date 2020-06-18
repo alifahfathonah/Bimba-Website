@@ -25,7 +25,7 @@
                <div class="card-header">
                   <a href="" class="btn btn-success"  data-toggle="modal" data-target="#exampleModal" title="Tambah data"><i class="fa fa-plus"></i> Tambah</a> &nbsp; &nbsp; &nbsp;
                   <?php if (!empty($this->input->get_post('id-siswa'))) { ?>
-                     <a id="btn-sertifikat" style="color: white" class="btn btn-info"  data-toggle="tooltip" data-id="<?= $this->input->get('id-siswa') ?>" title="sertifikat"><i class="fa fa-image"></i> Sertifikat</a>
+                     <a id="btn-sertifikat" style="color: white" class="btn btn-info"  data-toggle="tooltip" data-id="<?= $this->input->get('id-siswa') ?>" title="sertifikat"><i class="fa fa-image"></i> Foto Hasil Pembelajaran</a>
                   <?php } ?>
                </div>
                <div class="card-body">
@@ -37,6 +37,7 @@
                                  #
                               </th>
                               <th>Nama Siswa</th>
+                              <th>Tipe Modul</th>
                               <th>Modul</th>
                               <th>Minggu Ke-</th>
                               <th>Bulan</th>
@@ -53,6 +54,7 @@
                                  <img alt="image" src="<?= base_url('files/siswa/thumb/'.$x->thumb_siswa) ?>" class="rounded-circle" width="35" data-toggle="tooltip" title="<?= x($x->nama_siswa) ?>"> &nbsp;
                                  <?= x($x->nama_siswa) ?></td>
                               </td>
+                              <td><?= x($x->tipe_modul) ?></td>
                               <td><?= x($x->nama_modul) ?></td>
                               <td><?= x($x->minggu) ?></td>
                               <td><?= bulan(x($x->bulan)) ?></td>

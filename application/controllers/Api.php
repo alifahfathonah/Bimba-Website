@@ -20,6 +20,7 @@ class Api extends CI_Controller {
 				if (password_verify($password, $data->password_siswa)) {
 					$res = [
 						'code'	=> 1,
+						'id_siswa'	=> $data->id_siswa,
 						'message'	=> "Login berhasil"
 					];
 				}else{
@@ -82,27 +83,74 @@ class Api extends CI_Controller {
 		echo json_encode($ar);
 	}
 
-	public function penilaian($id){
-		$x = $this->Mapi->penilaian($id)->result();
-		$a['penilaian'] = array();
-		$a['sertifikat'] = array();
+	public function penilaian_limit($id){
+		$x = $this->Mapi->penilaian_limit($id, "BACA")->result();
+		$a = array();
 		foreach ($x as $b) {
 			$ar['id_penilaian']	= $b->id_penilaian;
+			$ar['id_siswa']		= $b->id_siswa;
 			$ar['nama_siswa']	= $b->nama_siswa;
+			$ar['tipe_modul']	= $b->tipe_modul;
 			$ar['nama_modul']	= $b->nama_modul;
 			$ar['minggu']		= $b->minggu;
 			$ar['bulan']		= bulan($b->bulan);
 			$ar['nilai']		= $b->nilai;
 			$ar['komentar']		= $b->komentar;
 
-			array_push($a['penilaian'], $ar);
+			array_push($a, $ar);
 		}
 
-		$s = $this->Mapi->sertifikat($id)->result();
-		foreach ($s as $s) {
-			$arr['sertifikat']	= base_url('files/sertifikat/').$s->sertifikat;
+		$x = $this->Mapi->penilaian_limit($id, "HURUF")->result();
+		foreach ($x as $b) {
+			$ar['id_penilaian']	= $b->id_penilaian;
+			$ar['id_siswa']		= $b->id_siswa;
+			$ar['nama_siswa']	= $b->nama_siswa;
+			$ar['tipe_modul']	= $b->tipe_modul;
+			$ar['nama_modul']	= $b->nama_modul;
+			$ar['minggu']		= $b->minggu;
+			$ar['bulan']		= bulan($b->bulan);
+			$ar['nilai']		= $b->nilai;
+			$ar['komentar']		= $b->komentar;
 
-			array_push($a['sertifikat'], $arr);
+			array_push($a, $ar);
+		}
+
+		echo json_encode($a);
+	}
+
+	public function penilaian(){
+		$id = $this->input->get('id_siswa');
+		$tipe = $this->input->get('tipe');
+		$x = $this->Mapi->penilaian($id, $tipe)->result();
+		$a = array();
+		foreach ($x as $b) {
+			$ar['id_penilaian']	= $b->id_penilaian;
+			$ar['id_siswa']		= $b->id_siswa;
+			$ar['nama_siswa']	= $b->nama_siswa;
+			$ar['tipe_modul']	= $b->tipe_modul;
+			$ar['nama_modul']	= $b->nama_modul;
+			$ar['minggu']		= $b->minggu;
+			$ar['bulan']		= bulan($b->bulan);
+			$ar['nilai']		= $b->nilai;
+			$ar['komentar']		= $b->komentar;
+
+			array_push($a, $ar);
+		}
+
+		echo json_encode($a);
+	}
+
+	public function sertifikat($id){
+		$x = $this->Mapi->sertifikat($id)->result();
+		$a = array();
+		foreach ($x as $b) {
+			$ar['id_siswa']			= $b->id_siswa;
+			$ar['id_sertifikat']	= $b->id_sertifikat;
+			$ar['sertifikat']		= base_url('files/sertifikat/'.$b->sertifikat);
+			$ar['keterangan']		= $b->keterangan;
+			$ar['tanggal']			= tgl($b->dibuat);
+
+			array_push($a, $ar);
 		}
 
 		echo json_encode($a);

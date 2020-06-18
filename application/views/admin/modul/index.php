@@ -21,8 +21,8 @@
                               <th class="text-center">
                                  #
                               </th>
-                              <th>Nama Modul</th>
                               <th>Tipe Modul</th>
+                              <th>Nama Modul</th>
                               <th>Aksi</th>
                            </tr>
                         </thead>
@@ -30,8 +30,8 @@
                         <?php $no = 1; foreach ($data as $x) { ?>
                            <tr>
                               <td><?= $no++ ?></td>
-                              <td><?= x($x->nama_modul) ?></td>
                               <td><?= x($x->tipe_modul) ?></td>
+                              <td><?= x($x->nama_modul) ?></td>
                               <td>
                                  <div class="btn-group">
                                     <a style="color: white" data-toggle="tooltip" title="Lihat/Edit Data" class="btn btn-sm btn-info btn-edit" data-id="<?= $x->id_modul ?>"><i class="fa fa-eye"></i></a>
