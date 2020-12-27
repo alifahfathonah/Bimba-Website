@@ -55,12 +55,12 @@
                                     <a href="<?= site_url('admin/berita/edit/'.$x->id_berita) ?>" style="color: white" data-toggle="tooltip" title="Edit Data" class="btn btn-sm btn-info btn-edit"><i class="fas fa-pen"></i></a>
 
                                     <?php if ($x->publish == 0){ ?>
-                                       <a data-toggle="tooltip" title="Publish Berita" href="#" class="btn btn-sm btn-warning" data-confirm="Publish Berita|Apakah anda yakin akan publish <b><?= x($x->judul_berita) ?></b>?" data-confirm-yes="window.location = '<?= site_url('admin/berita/publish/'.$x->id_berita) ?>'"><i class="fas fa-eye"></i></a>
+                                       <a data-toggle="tooltip" title="Aktifkan Data" href="<?= site_url('admin/berita/publish/'.$x->id_berita) ?>" class="btn btn-sm btn-warning" onclick="return confirm('Apakah anda yakin akan publish <?= x($x->judul_berita) ?>?')"><i class="fa fa-eye"></i></a>
                                     <?php }else{ ?>
-                                       <a data-toggle="tooltip" title="Unpublished Berita" href="#" class="btn btn-sm btn-warning" data-confirm="Unpublished Berita|Apakah anda yakin akan unpublish <b><?= x($x->judul_berita) ?></b>?" data-confirm-yes="window.location = '<?= site_url('admin/berita/unpublish/'.$x->id_berita) ?>'"><i class="fas fa-eye-slash"></i></a>
+                                       <a data-toggle="tooltip" title="Nonaktifkan Data" href="<?= site_url('admin/berita/unpublish/'.$x->id_berita) ?>" class="btn btn-sm btn-warning" onclick=" return confirm('Apakah anda yakin akan unpublish <?= x($x->judul_berita) ?>?')" data-confirm-yes="window.location = ''"><i class="fa fa-eye-slash"></i></a>
                                     <?php } ?>
 
-                                    <a data-toggle="tooltip" title="Hapus Data" href="#" class="btn btn-sm btn-danger" data-confirm="Hapus data|Apakah anda yakin akan menghapus <b><?= x($x->judul_berita) ?></b>?" data-confirm-yes="window.location = '<?= site_url('admin/berita/delete/'.$x->id_berita) ?>'"><i class="fa fa-trash"></i></a>
+                                    <a data-toggle="tooltip" title="Hapus Data" href="<?= site_url('admin/berita/delete/'.$x->id_berita) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus <?= x($x->judul_berita) ?>?')"><i class="fa fa-trash"></i></a>
                                  </div>
                               </td>
                            </tr>

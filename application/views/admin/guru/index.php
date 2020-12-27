@@ -11,7 +11,8 @@
          <div class="col-12">
             <div class="card">
                <div class="card-header">
-                  <a href="" class="btn btn-success"  data-toggle="modal" data-target="#exampleModal" title="Tambah data"><i class="fa fa-plus"></i> Tambah</a>
+                  <a href="" class="btn btn-success"  data-toggle="modal" data-target="#exampleModal" title="Tambah data"><i class="fa fa-plus"></i> Tambah</a> &nbsp;
+                  <a href="<?= site_url('admin/guru/laporan') ?>" class="btn btn-primary" target="_blank" data-toggle="tooltip" title="Cetak data"><i class="fa fa-print"></i> Cetak</a>
                </div>
                <div class="card-body">
                   <div class="table-responsive">
@@ -54,12 +55,12 @@
                                     <a style="color: white" data-toggle="tooltip" title="Lihat/Edit Data" class="btn btn-sm btn-info btn-edit" data-id="<?= $x->id_guru ?>"><i class="fa fa-eye"></i></a>
 
                                     <?php if ($x->aktif == 0){ ?>
-                                       <a data-toggle="tooltip" title="Aktifkan Data" href="#" class="btn btn-sm btn-warning" data-confirm="Aktifkan data|Apakah anda yakin akan mengaktifkan <b><?= x($x->nama_guru) ?></b>?" data-confirm-yes="window.location = '<?= site_url('admin/guru/aktifkan/'.$x->id_guru) ?>'"><i class="fa fa-unlock"></i></a>
+                                       <a data-toggle="tooltip" title="Aktifkan Data" href="<?= site_url('admin/guru/aktifkan/'.$x->id_guru) ?>" class="btn btn-sm btn-warning" onclick="return confirm('Apakah anda yakin akan mengaktifkan <?= x($x->nama_guru) ?>?')"><i class="fa fa-unlock"></i></a>
                                     <?php }else{ ?>
-                                       <a data-toggle="tooltip" title="Nonaktifkan Data" href="#" class="btn btn-sm btn-warning" data-confirm="Non aktifkan data|Apakah anda yakin akan menonaktifkan <b><?= x($x->nama_guru) ?></b>?" data-confirm-yes="window.location = '<?= site_url('admin/guru/non-aktifkan/'.$x->id_guru) ?>'"><i class="fa fa-lock"></i></a>
+                                       <a data-toggle="tooltip" title="Nonaktifkan Data" href="<?= site_url('admin/guru/non-aktifkan/'.$x->id_guru) ?>" class="btn btn-sm btn-warning" onclick=" return confirm('Apakah anda yakin akan menonaktifkan <?= x($x->nama_guru) ?>?')" data-confirm-yes="window.location = ''"><i class="fa fa-lock"></i></a>
                                     <?php } ?>
 
-                                    <a data-toggle="tooltip" title="Hapus Data" href="#" class="btn btn-sm btn-danger" data-confirm="Hapus data|Apakah anda yakin akan menghapus <b><?= x($x->nama_guru) ?></b>?" data-confirm-yes="window.location = '<?= site_url('admin/guru/delete/'.$x->id_guru) ?>'"><i class="fa fa-trash"></i></a>
+                                    <a data-toggle="tooltip" title="Hapus Data" href="<?= site_url('admin/guru/delete/'.$x->id_guru) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus <?= x($x->nama_guru) ?>?')"><i class="fa fa-trash"></i></a>
                                  </div>
                               </td>
                            </tr>

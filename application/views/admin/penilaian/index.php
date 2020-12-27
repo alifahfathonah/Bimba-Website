@@ -63,7 +63,7 @@
                               <td>
                                  <div class="btn-group">
                                     <a style="color: white" data-toggle="tooltip" title="Lihat/Edit Data" class="btn btn-sm btn-info btn-edit" data-id="<?= $x->id_penilaian ?>"><i class="fa fa-eye"></i></a>
-                                    <a data-toggle="tooltip" title="Hapus Data" href="#" class="btn btn-sm btn-danger" data-confirm="Hapus data|Apakah anda yakin akan menghapus <b><?= x($x->nama_siswa.' Modul: '.$x->nama_modul.' Minggu: '.$x->minggu.' Bulan: '.$x->bulan) ?></b>?" data-confirm-yes="window.location = '<?= site_url('admin/penilaian/delete/'.$x->id_penilaian) ?>'"><i class="fa fa-trash"></i></a>
+                                    <a data-toggle="tooltip" title="Hapus Data" href="<?= site_url('admin/penilaian/delete/'.$x->id_penilaian) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus <?= x($x->nama_siswa.' Modul: '.$x->nama_modul.' Minggu: '.$x->minggu.' Bulan: '.$x->bulan) ?>?')"><i class="fa fa-trash"></i></a>
                                  </div>
                               </td>
                            </tr>

@@ -15,6 +15,11 @@ class Guru extends CI_Controller {
 		$this->load->view('admin/guru/index', $x);
 	}
 
+	public function laporan(){
+		$x['data']		= $this->Mguru->read()->result();
+		$this->load->view('admin/guru/laporan', $x);
+	}
+
 	public function aktifkan($id){
 		if ($this->Mguru->update(array('aktif' => 1), $id)) {
 			notif("Data berhasil diaktifkan", "s");

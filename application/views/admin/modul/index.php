@@ -35,7 +35,7 @@
                               <td>
                                  <div class="btn-group">
                                     <a style="color: white" data-toggle="tooltip" title="Lihat/Edit Data" class="btn btn-sm btn-info btn-edit" data-id="<?= $x->id_modul ?>"><i class="fa fa-eye"></i></a>
-                                    <a data-toggle="tooltip" title="Hapus Data" href="#" class="btn btn-sm btn-danger" data-confirm="Hapus data|Apakah anda yakin akan menghapus <b><?= x($x->nama_modul) ?></b>?" data-confirm-yes="window.location = '<?= site_url('admin/modul/delete/'.$x->id_modul) ?>'"><i class="fa fa-trash"></i></a>
+                                    <a data-toggle="tooltip" title="Hapus Data" href="<?= site_url('admin/modul/delete/'.$x->id_modul) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus <?= x($x->nama_modul) ?>?')"><i class="fa fa-trash"></i></a>
                                  </div>
                               </td>
                            </tr>

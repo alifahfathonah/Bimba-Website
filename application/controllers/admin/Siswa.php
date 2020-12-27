@@ -17,6 +17,11 @@ class Siswa extends CI_Controller {
 		$this->load->view('admin/siswa/index', $x);
 	}
 
+	public function laporan(){
+		$x['data']		= $this->Msiswa->read()->result();
+		$this->load->view('admin/siswa/laporan', $x);
+	}
+
 	public function aktifkan($id){
 		if ($this->Msiswa->update(array('aktif' => 1), $id)) {
 			notif("Data berhasil diaktifkan", "s");

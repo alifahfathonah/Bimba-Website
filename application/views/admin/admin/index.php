@@ -56,12 +56,12 @@
                                     <a style="color: white" data-toggle="tooltip" title="Lihat/Edit Data" class="btn btn-sm btn-info btn-edit" data-id="<?= $x->id_admin ?>"><i class="fa fa-eye"></i></a>
 
                                     <?php if ($x->status == 0){ ?>
-                                       <a data-toggle="tooltip" title="Aktifkan Data" href="#" class="btn btn-sm btn-warning" data-confirm="Aktifkan data|Apakah anda yakin akan mengaktifkan <b><?= x($x->nama_admin) ?></b>?" data-confirm-yes="window.location = '<?= site_url('admin/admin/aktifkan/'.$x->id_admin) ?>'"><i class="fa fa-unlock"></i></a>
+                                       <a data-toggle="tooltip" title="Aktifkan Data" href="<?= site_url('admin/admin/aktifkan/'.$x->id_admin) ?>" class="btn btn-sm btn-warning" onclick="return confirm('Apakah anda yakin akan mengaktifkan <?= x($x->nama_admin) ?>?')"><i class="fa fa-unlock"></i></a>
                                     <?php }else{ ?>
-                                       <a data-toggle="tooltip" title="Nonaktifkan Data" href="#" class="btn btn-sm btn-warning" data-confirm="Non aktifkan data|Apakah anda yakin akan menonaktifkan <b><?= x($x->nama_admin) ?></b>?" data-confirm-yes="window.location = '<?= site_url('admin/admin/non-aktifkan/'.$x->id_admin) ?>'"><i class="fa fa-lock"></i></a>
+                                       <a data-toggle="tooltip" title="Nonaktifkan Data" href="<?= site_url('admin/admin/non-aktifkan/'.$x->id_admin) ?>" class="btn btn-sm btn-warning" onclick=" return confirm('Apakah anda yakin akan menonaktifkan <?= x($x->nama_admin) ?>?')" data-confirm-yes="window.location = ''"><i class="fa fa-lock"></i></a>
                                     <?php } ?>
 
-                                    <a data-toggle="tooltip" title="Hapus Data" href="#" class="btn btn-sm btn-danger" data-confirm="Hapus data|Apakah anda yakin akan menghapus <b><?= x($x->nama_admin) ?></b>?" data-confirm-yes="window.location = '<?= site_url('admin/admin/delete/'.$x->id_admin) ?>'"><i class="fa fa-trash"></i></a>
+                                    <a data-toggle="tooltip" title="Hapus Data" href="<?= site_url('admin/admin/delete/'.$x->id_admin) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus <?= x($x->nama_admin) ?>?')"><i class="fa fa-trash"></i></a>
                                  </div>
                               </td>
                            </tr>

@@ -33,6 +33,9 @@
                <li class="<?= ($this->uri->segment(2) == 'berita' && $this->uri->segment(3) == 'data') ? 'active':'' ?>"><a class="nav-link" href="<?= site_url('admin/berita/data') ?>">Data Berita</a></li>
             </ul>
          </li>
+         <li class="<?= $this->uri->segment(2) == 'laporan' ? 'active':'' ?>">
+            <a class="nav-link" href="<?= site_url('admin/laporan') ?>"><i class="fas fa-file"></i> <span>Laporan Penilaian</span></a>
+         </li>
          <li class="<?= $this->uri->segment(2) == 'info' ? 'active':'' ?>">
             <a class="nav-link" href="<?= site_url('admin/info') ?>"><i class="fas fa-info"></i> <span>Info Website</span></a>
          </li>
